@@ -1,16 +1,29 @@
 #include "../include/window.h"
 
+
+
+bool Window::AddChildThis(Node* newChild){
+    if(dynamic_cast<Viewport*>(newChild)){
+        viewports.push_back(dynamic_cast<Viewport*>(newChild));
+        AddDependency(newChild);
+        return Displayable::AddChildThis(newChild);
+    }
+    return false;
+}
+
+
 bool Window::CloseWindow(){
     return closeWindow;
 }
 
 
 void Window::DrawThis(){
-    // Fill the surface white
-    SDL_FillRect(winSurface, NULL, SDL_MapRGB(winSurface->format, 255, 255, 255));
+    std::cout << "draw window\n";
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-    // Update the window surface to show the changes
-    SDL_UpdateWindowSurface(window);
+    // Swap the window buffers to show the rendered image
+    SDL_GL_SwapWindow(window);
 }
 
 
@@ -42,8 +55,21 @@ void Window::UpdateThis(){
 
 Window::Window(){
 
+    //setup displayable global properties
+    Displayable::SetSDLWindow(window);
+    Displayable::SetSDLSurface(surface);
+
+
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    // Request double buffering as a GL attribute
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+
+
     // Create our window
-    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN );
+    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
 
     // Make sure creating the window succeeded
     if ( !window ) {
@@ -52,17 +78,41 @@ Window::Window(){
     }
 
     // Get the surface from the window
-    winSurface = SDL_GetWindowSurface( window );
+    surface = SDL_GetWindowSurface( window );
 
+    /*
     // Make sure getting the surface succeeded
-    if ( !winSurface ) {
+    if ( !surface ) {
         std::cout << "Error getting surface: " << SDL_GetError() << std::endl;
         exit(1);
     }
+    */
 
+    glContext = SDL_GL_CreateContext(window);
+    if (!glContext) {
+        std::cout << "Error creating OpenGL context: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    glewExperimental = GL_TRUE;
+    int nrAttributes;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+    std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << std::endl;
+
+    GLenum err = glewInit();
+    if (err != GLEW_OK)
+        exit(1);
+    if (!GLEW_VERSION_2_1)  // check that the machine supports the 2.1 API.
+        exit(1); // or handle the error in a nicer way
+
+    Name("Game Window");
 }
 
 
 Window::~Window(){
+    for(std::vector<Viewport*>::iterator oc = viewports.begin(); oc != viewports.end(); ){
+        delete *oc;
+        viewports.erase(oc);
+    }
     SDL_DestroyWindow(window);
 }

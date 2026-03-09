@@ -1,15 +1,17 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
 
-#include "node.h"
-#include "drawable.h"
+#include <SDL2/SDL.h>
 
-class Viewport : virtual public Node, virtual public Drawable {
+#include "node.h"
+#include "displayable.h"
+
+class Viewport : virtual public Node, virtual public Displayable {
 private:
     
 
 protected:
-    //void DrawThis() override;
+    void DrawThis() override;
     //void UpdateThis() override;
 
 

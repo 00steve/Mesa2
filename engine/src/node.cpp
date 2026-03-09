@@ -5,12 +5,17 @@ std::list<Node*> Node::garbage = std::list<Node*>();
 unsigned long Node::nodeIdIterator = 1;
 
 bool Node::AddChild(Node* newChild){
-    if(!CustomAddChild(newChild)) return false;
+    if(!AddChildThis(newChild)) return false;
     newChild->Parent(this);
     children.push_back(newChild);
     AddDependency(newChild);
     return true;
 }
+
+bool Node::AddChildThis(Node* newChildNode){
+    return true;
+}
+
 
 void Node::AddDependency(Node* newDependency){
     if(!newDependency) return;
@@ -24,10 +29,6 @@ std::list<Node*> Node::Children(){
 
 std::string Node::CustomProperty(const int propertyCode){
     return "";
-}
-
-bool Node::CustomAddChild(Node* newChildNode){
-    return true;
 }
 
 

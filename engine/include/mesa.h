@@ -4,19 +4,21 @@
 
 
 #include "node.h"
+#include "displayable.h"
 #include "window.h"
 #include "scene/loadingScreen.h"
-#include "viewport/viewport2d.h"
+#include "viewport/viewport3d.h"
 
-class Mesa : virtual public Node{
+class Mesa : virtual public Node, virtual public Displayable {
 private:
     Window* window = NULL;
     LoadingScreen* loadingScreen = NULL;
-    Viewport2d* viewport2d = NULL;
+    Viewport3d* viewport3d = NULL;
 
-private:
+protected:
+    virtual bool AddChildThis(Node* newChild);
+    virtual void DrawThis() override;
     virtual void UpdateThis() override;
-
 
 public:
     Mesa();

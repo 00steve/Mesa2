@@ -43,7 +43,7 @@ private:
     void UpdateChildren();
 
 protected:
-    virtual bool CustomAddChild(Node* newChild);
+    virtual bool AddChildThis(Node* newChild);
     virtual std::string CustomProperty(const int propertyCode);
     /*This should be implemented by any inheriting class that stores pointers 
     to any other nodes.*/

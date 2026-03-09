@@ -33,10 +33,11 @@
 
                 "scene/loadingScreen.cpp",
                 "viewport/viewport2d.cpp",
-
+                "viewport/viewport3d.cpp",
 
                 "mesa.cpp",
                 "${file}",
+                
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I",
