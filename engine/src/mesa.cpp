@@ -30,10 +30,10 @@ Mesa::Mesa(){
 
 
     //setup camera
-    Camera cam1 = Camera();
-    cam1.SetPosition(double3(-4,4,-4));
-    cam1.SetTargetPosition(double3(0,0,0));
-    viewport3d->SetCamera(&cam1);
+    Camera* cam1 = new Camera();
+    cam1->SetPosition(double3(-4,4,-4));
+    cam1->SetTargetPosition(double3(0,0,0));
+    viewport3d->SetCamera(cam1);
 
     Cube* cube1 = new Cube(2);
     cube1->Name("my cube");
@@ -56,5 +56,6 @@ bool Mesa::Quit(){
 
 
 void Mesa::UpdateThis(){
+    Timer::Update();
     this->Draw();
 }

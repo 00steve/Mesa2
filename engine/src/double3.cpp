@@ -1,6 +1,10 @@
 #include "../include/double3.h"
 
-double3::double3(){
+double3::double3() : 
+        x(0),
+        y(0),
+        z(0)
+        {
 }
 
 double3::double3(double x, double y, double z){

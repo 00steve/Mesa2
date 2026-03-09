@@ -19,6 +19,9 @@ double3 Physical::Gravity(double3 newGravity){
     return gravity = newGravity;
 }
 
+Physical::Physical(){
+}
+
 //https://copyprogramming.com/howto/intersection-between-line-and-triangle-in-3d
 Collision Physical::TriangleLineSegmentIntersection(double3 l0, double3 l1, double3 t0, double3 t1, double3 t2) {
     double3 e0 = t1 - t0;

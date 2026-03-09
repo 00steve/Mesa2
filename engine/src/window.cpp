@@ -61,7 +61,9 @@ Window::Window(){
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     // Request double buffering as a GL attribute
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24); 
+    // Request double buffering, which is common for smooth rendering
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); 
 
 
     // Create our window

@@ -13,8 +13,7 @@ private:
 
 protected:
     void DrawThis() override;
-    //void UpdateThis() override;
-
+    void SetCameraPosition(double3 newCameraPosition);
 
 public:
     void SetCamera(Camera* newCamera);

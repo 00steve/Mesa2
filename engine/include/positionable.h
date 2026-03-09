@@ -38,8 +38,8 @@ public:
     double3 GetPosition();
     double3* PositionPtr();
     double3 GetPreviousPosition();
-    double3* PreviousPositionPtr();
     Positionable();
+    double3* PreviousPositionPtr();
     double3 SetPosition(double3 newPosition);
 
 };

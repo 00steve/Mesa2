@@ -29,9 +29,7 @@ void Positionable::OnSetPosition(){
     //std::cout << "max : (" << aabb.UpperBounds().x << "," << aabb.UpperBounds().y << "," << aabb.UpperBounds().z << ")\n";
 }
 
-Positionable::Positionable() :
-        currentPosition(double3(0,0,0))
-        {
+Positionable::Positionable(){
     OnSetPosition();
 }
 
