@@ -6,13 +6,16 @@
 #include "node.h"
 #include "displayable.h"
 #include "window.h"
-#include "scene/loadingScreen.h"
+//#include "scene/loadingScreen.h"
 #include "viewport/viewport3d.h"
+#include "obj/camera.h"
+#include "obj/projectile.h"
+#include "obj/cube.h"
 
 class Mesa : virtual public Node, virtual public Displayable {
 private:
     Window* window = NULL;
-    LoadingScreen* loadingScreen = NULL;
+    //LoadingScreen* loadingScreen = NULL;
     Viewport3d* viewport3d = NULL;
 
 protected:

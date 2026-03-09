@@ -28,14 +28,22 @@ Mesa::Mesa(){
     viewport3d = new Viewport3d();
     window->AddChild(viewport3d);
 
-    loadingScreen = new LoadingScreen();
 
+    //setup camera
+    Camera cam1 = Camera();
+    cam1.SetPosition(double3(-4,4,-4));
+    cam1.SetTargetPosition(double3(0,0,0));
+    viewport3d->SetCamera(&cam1);
+
+    Cube* cube1 = new Cube(2);
+    cube1->Name("my cube");
+    viewport3d->AddChild(cube1);
 
     this->Name("Mesa");
 }
 
 Mesa::~Mesa(){
-    delete loadingScreen;
+    //delete loadingScreen;
     delete viewport3d;
     delete window;
     SDL_Quit();

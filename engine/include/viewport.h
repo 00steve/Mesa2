@@ -5,10 +5,11 @@
 
 #include "node.h"
 #include "displayable.h"
+#include "obj/camera.h"
 
 class Viewport : virtual public Node, virtual public Displayable {
 private:
-    
+    Camera* camera = NULL;
 
 protected:
     void DrawThis() override;
@@ -16,6 +17,7 @@ protected:
 
 
 public:
+    void SetCamera(Camera* newCamera);
     Viewport();
     ~Viewport();
 

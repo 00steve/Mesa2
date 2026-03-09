@@ -20,11 +20,15 @@
                 "-g",
                 "float3.cpp",
                 "double3.cpp",
+                "timer.cpp",
                 "aabb.cpp",
                 "node.cpp",
+                "collision.cpp",
                 "drawable.cpp",
                 "displayable.cpp",
                 "positionable.cpp",
+                "physical.cpp",
+                "bSpace.cpp",
                 
                 "fileUtil.cpp",
                 "viewport.cpp",
@@ -35,9 +39,15 @@
                 "viewport/viewport2d.cpp",
                 "viewport/viewport3d.cpp",
 
+                "displayable/line.cpp",
+                "displayable/triangle.cpp",
+                "obj/camera.cpp",
+                "obj/projectile.cpp",
+                "obj/cube.cpp",
+
                 "mesa.cpp",
                 "${file}",
-                
+
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I",

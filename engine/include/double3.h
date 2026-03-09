@@ -8,15 +8,15 @@
 class double3{
 public:
     union{
-        double x;
+        double x =0;
         double r;
     };
     union{
-        double y;
+        double y =0;
         double g;
     };
     union{
-        double z;
+        double z =0;
         double b;
     };
 

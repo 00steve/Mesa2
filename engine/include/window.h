@@ -8,7 +8,6 @@
 #include "node.h"
 #include "displayable.h"
 #include "viewport.h"
-#include "config/graphicsConfig.h"
 
 
 class Window : virtual public Node, virtual public Displayable {

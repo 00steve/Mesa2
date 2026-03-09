@@ -18,11 +18,6 @@ bool Window::CloseWindow(){
 
 
 void Window::DrawThis(){
-    std::cout << "draw window\n";
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Swap the window buffers to show the rendered image
     SDL_GL_SwapWindow(window);
 }
 
@@ -60,6 +55,7 @@ Window::Window(){
     Displayable::SetSDLSurface(surface);
 
 
+
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -94,6 +90,12 @@ Window::Window(){
         exit(1);
     }
 
+    if (SDL_GL_MakeCurrent(window, glContext) < 0) {
+        std::cout << "Error making OpenGL context current: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+
     glewExperimental = GL_TRUE;
     int nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
@@ -104,6 +106,9 @@ Window::Window(){
         exit(1);
     if (!GLEW_VERSION_2_1)  // check that the machine supports the 2.1 API.
         exit(1); // or handle the error in a nicer way
+
+
+    Displayable::LoadShaders();
 
     Name("Game Window");
 }
