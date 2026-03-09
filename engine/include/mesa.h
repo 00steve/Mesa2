@@ -5,20 +5,23 @@
 
 #include "node.h"
 #include "window.h"
-
+#include "scene/loadingScreen.h"
+#include "viewport/viewport2d.h"
 
 class Mesa : virtual public Node{
 private:
-    Window* window;
-
+    Window* window = NULL;
+    LoadingScreen* loadingScreen = NULL;
+    Viewport2d* viewport2d = NULL;
 
 private:
-    virtual bool UpdateThis() override;
+    virtual void UpdateThis() override;
 
 
 public:
     Mesa();
     ~Mesa();
+    bool Quit();
 
 
 };

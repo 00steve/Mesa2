@@ -18,9 +18,23 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "float3.cpp",
+                "double3.cpp",
+                "aabb.cpp",
                 "node.cpp",
                 "drawable.cpp",
+                "displayable.cpp",
+                "positionable.cpp",
+                
+                "fileUtil.cpp",
+                "viewport.cpp",
+                "scene.cpp",
                 "window.cpp",
+
+                "scene/loadingScreen.cpp",
+                "viewport/viewport2d.cpp",
+
+
                 "mesa.cpp",
                 "${file}",
                 "-o",
@@ -28,7 +42,12 @@
                 "-I",
                 "-lSDL2main",
                 "-lSDL2",
-                "-L/usr/lib/x86_64-linux-gnu"
+                "-L/usr/lib/x86_64-linux-gnu",
+                "-lglfw",
+                "-lGLEW",
+                "-lGLU",
+                "-lGL",
+                "-lX11"
             ],
             "options": {
                 "cwd": "${fileDirname}"

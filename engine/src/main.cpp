@@ -8,6 +8,8 @@
 
 int main(int argc, char** args) {
     Mesa mesa = Mesa();
-    while(mesa.Update()){}
+    while(!mesa.Quit()){
+        mesa.Update();
+    }
 	return 0;
 }

@@ -1,9 +1,11 @@
 #ifndef UTIL_Positionable
 #define UTIL_Positionable
 
+#include <iostream>
+
+
 #include "double3.h"
 #include "aabb.h"
-#include <iostream>
 
 class Positionable{
 private:

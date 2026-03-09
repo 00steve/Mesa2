@@ -1,5 +1,9 @@
 #include "../include/window.h"
 
+bool Window::CloseWindow(){
+    return closeWindow;
+}
+
 
 void Window::DrawThis(){
     // Fill the surface white
@@ -11,12 +15,12 @@ void Window::DrawThis(){
 
 
 
-bool Window::UpdateThis(){
+void Window::UpdateThis(){
     while (SDL_PollEvent(&event) != 0) {
         // Check the type of event and handle it
         switch (event.type) {
             case SDL_QUIT:
-                quit = true; // User clicked the window's close button
+                closeWindow = true; // User clicked the window's close button
                 break;
             case SDL_KEYDOWN:
                 // Handle key presses
@@ -31,8 +35,6 @@ bool Window::UpdateThis(){
             // Add cases for other events like mouse clicks, window events, etc.
         }
     }
-
-    return !quit;
 }
 
 

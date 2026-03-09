@@ -7,16 +7,24 @@ Mesa::Mesa(){
         exit(1);
     } 
     window = new Window();
+    loadingScreen = new LoadingScreen();
+    viewport2d = new Viewport2d();
 }
 
 Mesa::~Mesa(){
+    delete viewport2d;
+    delete loadingScreen;
     delete window;
     SDL_Quit();
 }
 
 
-bool Mesa::UpdateThis(){
-    if(!window->Update()) return false;
+bool Mesa::Quit(){
+    return window->CloseWindow();
+}
+
+
+void Mesa::UpdateThis(){
+    window->Update();
     window->Draw();
-    return true;
 }
