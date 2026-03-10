@@ -18,6 +18,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "int2.cpp",
                 "float3.cpp",
                 "double3.cpp",
                 "timer.cpp",
@@ -25,6 +26,7 @@
                 "node.cpp",
                 "collision.cpp",
                 "drawable.cpp",
+                "graphicsConfig.cpp",
                 "displayable.cpp",
                 "positionable.cpp",
                 "physical.cpp",

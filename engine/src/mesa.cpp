@@ -1,7 +1,6 @@
 #include "../include/mesa.h"
 
 
-
 bool Mesa::AddChildThis(Node* newChild){
     /*if(dynamic_cast<Window*>(newChild)){
         windows.push_back(dynamic_cast<Window*>(newChild));
@@ -22,10 +21,12 @@ Mesa::Mesa(){
         std::cout << "Error initializing SDL: " << SDL_GetError() << std::endl;
         exit(1);
     } 
+
+
     window = new Window();
     AddChild(window);
     
-    viewport3d = new Viewport3d();
+    Viewport* viewport3d = new Viewport3d();
     window->AddChild(viewport3d);
 
 
@@ -44,7 +45,6 @@ Mesa::Mesa(){
 
 Mesa::~Mesa(){
     //delete loadingScreen;
-    delete viewport3d;
     delete window;
     SDL_Quit();
 }

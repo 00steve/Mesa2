@@ -2,7 +2,7 @@
 #define MESA_H
 
 
-
+#include "graphicsConfig.h"
 #include "node.h"
 #include "displayable.h"
 #include "window.h"
@@ -15,8 +15,6 @@
 class Mesa : virtual public Node, virtual public Displayable {
 private:
     Window* window = NULL;
-    //LoadingScreen* loadingScreen = NULL;
-    Viewport3d* viewport3d = NULL;
 
 protected:
     virtual bool AddChildThis(Node* newChild);

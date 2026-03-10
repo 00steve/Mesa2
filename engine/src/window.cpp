@@ -30,6 +30,9 @@ void Window::UpdateThis(){
             case SDL_QUIT:
                 closeWindow = true; // User clicked the window's close button
                 break;
+            case SDL_WINDOWEVENT_RESIZED:
+                SetWindowSize(int2(event.window.data1, event.window.data2));
+                break;
             case SDL_KEYDOWN:
                 // Handle key presses
                 // You can check specific keys using e.key.keysym.sym (e.g., SDLK_RETURN)
@@ -67,7 +70,7 @@ Window::Window(){
 
 
     // Create our window
-    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
+    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
     // Make sure creating the window succeeded
     if ( !window ) {
