@@ -13,8 +13,9 @@ void Viewport::DrawThis(){
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    int width = 1280;
-    int height = 720;
+    //int2 windowSize = GetScreenSize();
+    //int width = 1280;
+    //int height = 720;
     
     //glFrustum(-((float)width/((float)height))*2, ((float)width)/((float)height)*2, -2, 2, 2, 10.);
     //glFrustum(-2,2, -2, 2, 1, 6);

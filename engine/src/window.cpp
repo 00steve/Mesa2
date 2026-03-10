@@ -32,6 +32,8 @@ void Window::UpdateThis(){
                 break;
             case SDL_WINDOWEVENT_RESIZED:
                 SetWindowSize(int2(event.window.data1, event.window.data2));
+                glViewport(0,0,(GLsizei)event.window.data1,(GLsizei)event.window.data2);
+                std::cout << "window resized\n";
                 break;
             case SDL_KEYDOWN:
                 // Handle key presses
@@ -68,7 +70,10 @@ Window::Window(){
     // Request double buffering, which is common for smooth rendering
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); 
 
-
+    int windowWidth = 1280;
+    int windowHeight = 720;
+    Displayable::SetWindowSize(int2(windowWidth, windowHeight));
+    
     // Create our window
     window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 

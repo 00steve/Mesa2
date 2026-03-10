@@ -44,8 +44,6 @@ Mesa::Mesa(){
 }
 
 Mesa::~Mesa(){
-    //delete loadingScreen;
-    delete window;
     SDL_Quit();
 }
 
