@@ -24,17 +24,26 @@ void Window::DrawThis(){
 
 
 void Window::UpdateThis(){
-    while (SDL_PollEvent(&event) != 0) {
+    while (SDL_PollEvent(&event) && !closeWindow) {
         // Check the type of event and handle it
         switch (event.type) {
             case SDL_QUIT:
                 closeWindow = true; // User clicked the window's close button
                 break;
-            case SDL_WINDOWEVENT_RESIZED:
-                SetWindowSize(int2(event.window.data1, event.window.data2));
-                glViewport(0,0,(GLsizei)event.window.data1,(GLsizei)event.window.data2);
-                std::cout << "window resized\n";
-                break;
+
+
+            case SDL_WINDOWEVENT:
+                switch(event.window.event) {
+                case SDL_WINDOWEVENT_RESIZED:
+                case SDL_WINDOWEVENT_SIZE_CHANGED:
+                    std::cout <<"window resized\n";
+                    SetWindowSize(int2(event.window.data1, event.window.data2));
+                    //SDL_GL_GetDrawableSize(window, &event.window.data1, &event.window.data2);
+                    break;
+                // ... other window events
+            }
+            break;
+
             case SDL_KEYDOWN:
                 // Handle key presses
                 // You can check specific keys using e.key.keysym.sym (e.g., SDLK_RETURN)
@@ -75,7 +84,7 @@ Window::Window(){
     Displayable::SetWindowSize(int2(windowWidth, windowHeight));
     
     // Create our window
-    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow( "Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
     // Make sure creating the window succeeded
     if ( !window ) {
