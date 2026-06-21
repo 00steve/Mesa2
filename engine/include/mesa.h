@@ -3,6 +3,7 @@
 
 
 #include "graphicsConfig.h"
+#include "input.h"
 #include "node.h"
 #include "displayable.h"
 #include "window.h"

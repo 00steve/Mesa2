@@ -21,6 +21,7 @@
                 "int2.cpp",
                 "float3.cpp",
                 "double3.cpp",
+                "input.cpp",
                 "timer.cpp",
                 "aabb.cpp",
                 "node.cpp",
@@ -31,6 +32,9 @@
                 "positionable.cpp",
                 "physical.cpp",
                 "bSpace.cpp",
+
+                "input/keyboard.cpp",
+
                 
                 "fileUtil.cpp",
                 "viewport.cpp",

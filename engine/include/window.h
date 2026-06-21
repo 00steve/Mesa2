@@ -5,6 +5,7 @@
 #include <vector>
 #include <SDL2/SDL.h>
 
+#include "input.h"
 #include "node.h"
 #include "displayable.h"
 #include "viewport.h"

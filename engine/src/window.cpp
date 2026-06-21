@@ -46,9 +46,11 @@ void Window::UpdateThis(){
             case SDL_KEYDOWN:
                 // Handle key presses
                 // You can check specific keys using e.key.keysym.sym (e.g., SDLK_RETURN)
+                Input::KeyboardKeyDown(event.key.keysym.sym);
                 break;
             case SDL_KEYUP:
                 // Handle key releases
+                Input::KeyboardKeyUp(event.key.keysym.sym);
                 break;
             case SDL_MOUSEMOTION:
                 // Handle mouse movement (e.g., using e.motion.x and e.motion.y)

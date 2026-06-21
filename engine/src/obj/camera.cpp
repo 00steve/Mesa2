@@ -1,6 +1,7 @@
 #include "../../include/obj/camera.h"
 
-Camera::Camera(){
+Camera::Camera() : 
+        cameraMode(ManualKeyboardWASD1) {
     ResetProjectionMatrix();
     ResetViewMatrix();
 }
@@ -27,15 +28,52 @@ void Camera::OnSetPosition(){
 }
 
 void Camera::UpdateThis(){
-    camRot += StepTime();
-    if(camRot > 6.28) camRot -= 6.28;
-
-    double nX = std::sin(camRot) * -4;
-    double nZ = std::cos(camRot) * -4;
-    this->SetPosition(double3(nX,2,nZ));
 
 
-    std::cout << "Camera position: " << GetPosition().toString() << std::endl;
+
+
+    cameraPosition = GetPosition();
+
+
+    bool needsUpdate = false;
+    double stepTime = StepTime();
+    double3 newPosition = GetPosition();
+
+    switch(cameraMode){
+    case ManualKeyboardWASD1:
+        if(keyboard.APressed()){
+            cameraAngularVelocity.y += .6;
+        }
+        if (keyboard.DPressed()){
+            cameraAngularVelocity.y -= .6;
+        }
+        if(keyboard.WPressed()){
+            cameraVelocity += 1;
+        }
+        if(keyboard.SPressed()){
+            cameraVelocity -= 1;
+        }
+
+        cameraAngularVelocity.y *= 0.9;
+        cameraVelocity *= .9;
+
+        cameraAngle += cameraAngularVelocity.y * stepTime;
+        cameraLinearVelocity.x = std::sin(cameraAngle.y)*cameraVelocity;
+        cameraLinearVelocity.z = std::cos(cameraAngle.y)*cameraVelocity;
+        cameraPosition.x += cameraLinearVelocity.x * stepTime;
+        cameraPosition.z += cameraLinearVelocity.z * stepTime;
+        //cameraPosition.z += cameraVelocity * stepTime;
+        SetPositionAndRotation(cameraPosition, cameraAngle);
+        break;
+
+    };
+
+    /*if(cameraLinearVelocity.z != 0 || cameraAngularVelocity.y != 0 || needsUpdate){
+        this->SetPosition(cameraPosition);
+        
+    }*/
+
+    //std::cout << "Camera position: " << GetPosition().toString() << std::endl;
 }
 
 void Camera::RecalculateViewMatrix(){
@@ -44,8 +82,9 @@ void Camera::RecalculateViewMatrix(){
         targetPosition,   // where you want to look at, in world space
         glm::vec3(0,1,0)        // probably glm::vec3(0,1,0), but (0,-1,0) would make you looking upside-down, which can be great too
     );
-    std::cout << "Camera postion: " << GetPosition().toString() << std::endl;
+    //std::cout << "Camera postion: " << GetPosition().toString() << std::endl;
 }
+
 
 void Camera::ResetProjectionMatrix(){
     float aspectRatio = GetViewRatio();
@@ -57,10 +96,22 @@ void Camera::ResetProjectionMatrix(){
     );
 }
 
+
 void Camera::ResetViewMatrix(){
     SetTargetPosition(double3(0,0,0));
     RecalculateViewMatrix();
 }
+
+
+void Camera::SetPositionAndRotation(double3 position, double3 rotation){
+    SetPosition(position);
+    SetTargetPosition(double3(
+        position.x + std::sin(rotation.y),
+        position.y, 
+        position.z + std::cos(rotation.y)
+    ));
+}
+
 
 double3 Camera::SetTargetPosition(double3 newTargetPosition){
     targetPosition = glm::vec3(newTargetPosition.x,newTargetPosition.y,newTargetPosition.z);
