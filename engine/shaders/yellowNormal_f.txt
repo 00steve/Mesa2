@@ -1,0 +1,11 @@
+precision highp float;
+varying vec3 fNormal;
+
+void main()
+{
+  vec3 dir = vec3(0,1,0); // high noon
+  vec3 color = vec3(1,1,0); // yellow
+  
+  float diffuse = .5 + dot(fNormal,dir);
+  gl_FragColor = vec4(diffuse * color, 1.0);
+}

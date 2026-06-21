@@ -22,7 +22,6 @@ void Window::DrawThis(){
 }
 
 
-
 void Window::UpdateThis(){
     while (SDL_PollEvent(&event) && !closeWindow) {
         // Check the type of event and handle it
@@ -36,8 +35,8 @@ void Window::UpdateThis(){
                 switch(event.window.event) {
                 case SDL_WINDOWEVENT_RESIZED:
                 case SDL_WINDOWEVENT_SIZE_CHANGED:
-                    std::cout <<"window resized\n";
                     SetWindowSize(int2(event.window.data1, event.window.data2));
+                    std::cout <<"window resized: new aspect ratio : " << GetViewRatio() << "\n";
                     //SDL_GL_GetDrawableSize(window, &event.window.data1, &event.window.data2);
                     break;
                 // ... other window events
@@ -58,8 +57,6 @@ void Window::UpdateThis(){
         }
     }
 }
-
-
 
 
 Window::Window(){
@@ -95,13 +92,6 @@ Window::Window(){
     // Get the surface from the window
     surface = SDL_GetWindowSurface( window );
 
-    /*
-    // Make sure getting the surface succeeded
-    if ( !surface ) {
-        std::cout << "Error getting surface: " << SDL_GetError() << std::endl;
-        exit(1);
-    }
-    */
 
     glContext = SDL_GL_CreateContext(window);
     if (!glContext) {

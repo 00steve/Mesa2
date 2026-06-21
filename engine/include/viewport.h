@@ -20,6 +20,7 @@ protected:
 
 public:
     void SetCamera(Camera* newCamera);
+    void SetCameraTarget(double3 newCameraTarget);
     Viewport();
     ~Viewport();
 

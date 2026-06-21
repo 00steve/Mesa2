@@ -32,7 +32,8 @@ Mesa::Mesa(){
 
     //setup camera
     Camera* cam1 = new Camera();
-    cam1->SetPosition(double3(-4,4,-4));
+    //for some reason we see shit if the z index is positive and don't if it is negative
+    cam1->SetPosition(double3(0,2,4));
     cam1->SetTargetPosition(double3(0,0,0));
     viewport3d->SetCamera(cam1);
 

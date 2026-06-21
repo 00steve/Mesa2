@@ -1,0 +1,16 @@
+Main
+	Mesa
+	- N/A
+		Window
+		- SDL_Poll event
+		- 
+			Viewport
+			- glMatrixMode (projection)
+			- load identity
+			- mult matrix : camera projection matrix
+			- mult matrix : camera view matrix
+			- glMatrixMode (model)
+			 
+			Viewport3d
+			 - SetCameraPosition(xyz)
+				

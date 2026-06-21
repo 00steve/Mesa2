@@ -6,8 +6,7 @@ void Viewport::DrawThis(){
 
     x += .01;
     if(x > 1) x =  0;
-
-    int2 screenSize = Displayable::GetScreenSize();
+    //std::cout << "rot : " << x << std::endl;
 
 
     //setuip current OpenGL settings and such
@@ -18,28 +17,37 @@ void Viewport::DrawThis(){
     //glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);    
 
+    int2 screenSize = Displayable::GetScreenSize();
+    glViewport(0,0,(GLsizei)screenSize.x,(GLsizei)screenSize.y);
+
     //set it to configure the projection matrix and then load the current 
     //camera projection matrix settings
     glMatrixMode(GL_PROJECTION);
 
     glLoadIdentity();
     glMultMatrixf(glm::value_ptr(*camera->GetProjectionMatrix()));
+    glMultMatrixf(glm::value_ptr(*camera->GetViewMatrix()));
 
     //set it back to model projection, so all of the child nodes can
     //be rendered in the modelview matrix where they belong with the 
     //camera view matrix already applied and all of that good shit.
     glMatrixMode(GL_MODELVIEW);
-    glViewport(0,0,(GLsizei)screenSize.x,(GLsizei)screenSize.y);
 
 }
 
 void Viewport::SetCamera(Camera* newCamera){
     camera = newCamera;
+    this->AddChild(camera);
 }
 
 void Viewport::SetCameraPosition(double3 newCameraPosition){
     if(!camera) return;
     camera->SetPosition(newCameraPosition);
+}
+
+void Viewport::SetCameraTarget(double3 newCameraTarget){
+    if(!camera) return;
+    camera->SetTargetPosition(newCameraTarget);
 }
 
 Viewport::Viewport(){
