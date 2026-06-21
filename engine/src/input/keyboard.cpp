@@ -28,6 +28,7 @@ bool Keyboard::WPressed(){
 }
 
 
-bool Keyboard::operator[] (unsigned int keyCode){
+//ignoring for now
+/*bool Keyboard::operator[] (unsigned int keyCode){
     return false;
-}
+}*/

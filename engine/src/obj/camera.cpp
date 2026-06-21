@@ -47,7 +47,7 @@ void Camera::UpdateThis(){
         if (keyboard.DPressed()){
             cameraAngularVelocity.y -= .6;
         }
-        if(keyboard.WPressed()){
+        if(keyboard.KeyPressed(SDLK_w)){
             cameraVelocity += 1;
         }
         if(keyboard.SPressed()){

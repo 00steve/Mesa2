@@ -5,7 +5,7 @@
 
 
 void Input::KeyboardKeyDown(unsigned int keyCode){
-    //std::cout << "pressed key : " << keyCode << std::endl;
+    std::cout << "pressed key : " << keyCode << std::endl;
     keyboardKey[keyCode] = true;
     return;
 }

@@ -15,7 +15,8 @@ public:
     bool SPressed();
     bool WPressed();
 
-    bool operator[] (unsigned int keyCode);
+    //now working, don't know why. Will ignore for now.
+    //bool operator[] (unsigned int keyCode);
 
 };
 #endif
