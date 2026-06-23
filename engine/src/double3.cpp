@@ -117,6 +117,9 @@ double3 double3::operator += (double other){
 double3 double3::operator * (double other){
     return double3(x * other, y * other, z * other);
 }
+double3 double3::operator *= (double other){
+    return double3(x *= other, y *= other, z *= other);
+}
 double3 double3::operator / (double other){
     return double3(x / other, y / other, z / other);
 }

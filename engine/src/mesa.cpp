@@ -35,6 +35,7 @@ Mesa::Mesa(){
     //for some reason we see shit if the z index is positive and don't if it is negative
     cam1->SetPosition(double3(0,2,-14));
     cam1->SetTargetPosition(double3(0,0,0));
+    cam1->SetMode(ManualKeyboardMouse2dMove);
     viewport3d->SetCamera(cam1);
 
     Cube* cube1 = new Cube(2);

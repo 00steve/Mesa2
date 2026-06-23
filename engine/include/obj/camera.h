@@ -12,7 +12,7 @@
 
 enum CameraMode {
     ManualKeyboardWASD1,
-    ManualKeyboardMouse1,
+    ManualKeyboardMouse2dMove,
     FPS
 
 
@@ -28,6 +28,7 @@ private:
     double3 cameraAngularVelocity;
     double3 cameraLinearAcceleration;
     double3 cameraLinearVelocity;
+    double cameraLinearVelocityMax = 3;
     double3 cameraPosition;
     double cameraVelocity = 0;
     Keyboard keyboard;
@@ -62,6 +63,7 @@ public:
 
     void ResetProjectionMatrix();
     void ResetViewMatrix();
+    void SetMode(CameraMode newCameraMode);
     void SetPositionAndRotation(double3 position, double3 rotation);
     /*sets the camera to look at the new target position and returns the 
     new target position as well, because.... why not?*/

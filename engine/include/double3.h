@@ -49,6 +49,7 @@ public:
     double3 operator + (double other);
     double3 operator += (double other);
     double3 operator * (double other);
+    double3 operator *= (double other);
     double3 operator / (double other);
 
 };

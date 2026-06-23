@@ -2,7 +2,7 @@
 
 Camera::Camera() : 
         cameraAngle(double3(0,0,0)),
-        cameraMode(ManualKeyboardMouse1) {
+        cameraMode(ManualKeyboardWASD1) {
     ResetProjectionMatrix();
     ResetViewMatrix();
     std::cout << "-  Create camera \n ";
@@ -28,6 +28,10 @@ void Camera::OnSetPosition(){
     cameraPosition = Positionable::GetPosition();
     Positionable::OnSetPosition();
     RecalculateViewMatrix();
+}
+
+void Camera::SetMode(CameraMode newCameraMode){
+    this->cameraMode = newCameraMode;
 }
 
 void Camera::UpdateThis(){
@@ -64,18 +68,41 @@ void Camera::UpdateThis(){
         SetPositionAndRotation(cameraPosition, cameraAngle);
         break;
 
-    case ManualKeyboardMouse1:
+    case ManualKeyboardMouse2dMove:
         mouse.CheckCursorMovement();
         int2 winCursorMovement;
         float moveSpeed = .0024;
         if(mouse.CursorMoved()){
             winCursorMovement = mouse.GetWindowCursorMovement();
-            //cameraAngle.x = winCursorMovement.y * .01;
-            //cameraAngle.y = cameraAngle.y - winCursorMovement.x * .01;
-            cameraAngle += double3(winCursorMovement.y * moveSpeed ,winCursorMovement.x * moveSpeed, 0);
+            cameraAngle -= double3(winCursorMovement.y * moveSpeed ,winCursorMovement.x * moveSpeed, 0);
             needsUpdate = true;
         }
 
+        if(keyboard.APressed()){
+            cameraLinearVelocity.x -= cameraLinearVelocityMax;
+            needsUpdate = true;
+        }
+        if (keyboard.DPressed()){
+            cameraLinearVelocity.x += cameraLinearVelocityMax;
+            needsUpdate = true;
+        }
+        if(keyboard.WPressed()){
+            cameraLinearVelocity.z += cameraLinearVelocityMax;
+            needsUpdate = true;
+        }
+        if(keyboard.SPressed()){
+            cameraLinearVelocity.z -= cameraLinearVelocityMax;
+            needsUpdate = true;
+        }
+
+        cameraLinearVelocity *= 0.89;
+        double3 lv = cameraLinearVelocity * stepTime;
+
+        cameraPosition += double3(
+            std::sin(cameraAngle.y)*lv.z - std::cos(cameraAngle.y)*lv.x,
+            0,//std::cos(cameraAngle.x)*lv.z,
+            std::cos(cameraAngle.y)*lv.z + std::sin(cameraAngle.y)*lv.x
+        );
 
         if(needsUpdate){
             SetPositionAndRotation(cameraPosition, cameraAngle);
@@ -83,8 +110,6 @@ void Camera::UpdateThis(){
         break;
 
     };
-
-    //std::cout << "Camera position: " << GetPosition().toString() << std::endl;
 }
 
 void Camera::RecalculateViewMatrix(){
