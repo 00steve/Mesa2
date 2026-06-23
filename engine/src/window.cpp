@@ -23,6 +23,8 @@ void Window::DrawThis(){
 
 
 void Window::UpdateThis(){
+
+    Input::CursorMovement(0,0);
     while (SDL_PollEvent(&event) && !closeWindow) {
         // Check the type of event and handle it
         switch (event.type) {
@@ -44,6 +46,9 @@ void Window::UpdateThis(){
             break;
 
             case SDL_KEYDOWN:
+                if (event.key.keysym.sym == SDLK_ESCAPE) {
+                    closeWindow = true;
+                }
                 // Handle key presses
                 // You can check specific keys using e.key.keysym.sym (e.g., SDLK_RETURN)
                 Input::KeyboardKeyDown(event.key.keysym.sym);
@@ -54,6 +59,7 @@ void Window::UpdateThis(){
                 break;
             case SDL_MOUSEMOTION:
                 // Handle mouse movement (e.g., using e.motion.x and e.motion.y)
+                Input::CursorMovement(event.motion.xrel,event.motion.yrel);
                 break;
             // Add cases for other events like mouse clicks, window events, etc.
         }
@@ -94,6 +100,8 @@ Window::Window(){
     // Get the surface from the window
     surface = SDL_GetWindowSurface( window );
 
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+    //SDL_SetWindowMouseGrab(window, SDL_TRUE);
 
     glContext = SDL_GL_CreateContext(window);
     if (!glContext) {

@@ -1,9 +1,11 @@
 #include "../../include/obj/camera.h"
 
 Camera::Camera() : 
-        cameraMode(ManualKeyboardWASD1) {
+        cameraAngle(double3(0,0,0)),
+        cameraMode(ManualKeyboardMouse1) {
     ResetProjectionMatrix();
     ResetViewMatrix();
+    std::cout << "-  Create camera \n ";
 }
 
 Camera::~Camera(){
@@ -23,21 +25,17 @@ glm::mat4* Camera::GetViewMatrix(){
 }
 
 void Camera::OnSetPosition(){
+    cameraPosition = Positionable::GetPosition();
     Positionable::OnSetPosition();
     RecalculateViewMatrix();
 }
 
 void Camera::UpdateThis(){
-
-
-
-
     cameraPosition = GetPosition();
-
-
     bool needsUpdate = false;
     double stepTime = StepTime();
     double3 newPosition = GetPosition();
+    
 
     switch(cameraMode){
     case ManualKeyboardWASD1:
@@ -66,12 +64,25 @@ void Camera::UpdateThis(){
         SetPositionAndRotation(cameraPosition, cameraAngle);
         break;
 
-    };
+    case ManualKeyboardMouse1:
+        mouse.CheckCursorMovement();
+        int2 winCursorMovement;
+        float moveSpeed = .0024;
+        if(mouse.CursorMoved()){
+            winCursorMovement = mouse.GetWindowCursorMovement();
+            //cameraAngle.x = winCursorMovement.y * .01;
+            //cameraAngle.y = cameraAngle.y - winCursorMovement.x * .01;
+            cameraAngle += double3(winCursorMovement.y * moveSpeed ,winCursorMovement.x * moveSpeed, 0);
+            needsUpdate = true;
+        }
 
-    /*if(cameraLinearVelocity.z != 0 || cameraAngularVelocity.y != 0 || needsUpdate){
-        this->SetPosition(cameraPosition);
-        
-    }*/
+
+        if(needsUpdate){
+            SetPositionAndRotation(cameraPosition, cameraAngle);
+        }
+        break;
+
+    };
 
     //std::cout << "Camera position: " << GetPosition().toString() << std::endl;
 }
@@ -106,9 +117,9 @@ void Camera::ResetViewMatrix(){
 void Camera::SetPositionAndRotation(double3 position, double3 rotation){
     SetPosition(position);
     SetTargetPosition(double3(
-        position.x + std::sin(rotation.y),
-        position.y, 
-        position.z + std::cos(rotation.y)
+        position.x + std::sin(rotation.y)*std::cos(rotation.x),
+        position.y + std::sin(rotation.x), 
+        position.z + std::cos(rotation.y)*std::cos(rotation.x)
     ));
 }
 

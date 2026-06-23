@@ -1,6 +1,10 @@
 #ifndef UTIL_KEYBOARD_H
 #define UTIL_KEYBOARD_H
 
+/* references
+github.com/libsdl-org/SDL/blob/SDL2/include/SDL_keycode.h
+*/
+
 
 #include "../input.h"
 #include <SDL2/SDL.h>

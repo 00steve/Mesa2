@@ -1,7 +1,9 @@
 #include "../include/input.h"
 
 
-//bool Input::KeyboardKey[105] = {};
+int2 Input::CursorMovement(){
+    return cursorMovement;
+}
 
 
 void Input::KeyboardKeyDown(unsigned int keyCode){
@@ -10,12 +12,23 @@ void Input::KeyboardKeyDown(unsigned int keyCode){
     return;
 }
 
+
 bool Input::KeyboardKeyState(unsigned int keyCode){
     return keyboardKey[keyCode];
 }
+
 
 void Input::KeyboardKeyUp(unsigned int keyCode){
     keyboardKey[keyCode] = false;
     return;
 }
 
+/*
+int2 Input::WindowCursorPosition(){
+    return windowCursorPosition;
+}
+*/
+
+void Input::CursorMovement(unsigned int x, unsigned int y){
+    cursorMovement = int2(x,y);
+}

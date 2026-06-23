@@ -1,15 +1,18 @@
 #ifndef OBJ_Camera
 #define OBJ_Camera
 
+
 #include "../input/keyboard.h"
+#include "../input/mouse.h"
+
 #include "../displayable.h"
 #include "../physical.h"
 #include "../timer.h"
 
 
-
 enum CameraMode {
     ManualKeyboardWASD1,
+    ManualKeyboardMouse1,
     FPS
 
 
@@ -28,6 +31,7 @@ private:
     double3 cameraPosition;
     double cameraVelocity = 0;
     Keyboard keyboard;
+    Mouse mouse;
 
     glm::mat4 projectionMatrix;
     glm::mat4 projectionMatrixDefault;
