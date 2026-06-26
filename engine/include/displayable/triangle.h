@@ -16,6 +16,7 @@ public:
 
     void DrawThis();
     void Init(double3* v0, double3* v1, double3* v2, double3* c0, double3* c1, double3* c2);
+    triangle();
     triangle(double3* v0, double3* v1, double3* v2);
     triangle(double3* v0, double3* v1, double3* v2, double3* c0, double3* c1, double3* c2);
     ~triangle();

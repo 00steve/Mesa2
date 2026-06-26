@@ -28,6 +28,10 @@ void triangle::Init(double3* v0, double3* v1, double3* v2, double3* c0, double3*
     AssignVertices(v0, v1, v2);
 }
 
+triangle::triangle(){
+    Init(new double3(), new double3(), new double3(), new double3(), new double3(), new double3());
+}
+
 triangle::triangle(double3* v0, double3* v1, double3* v2){
     Init(v0, v1, v2, new double3(), new double3(), new double3());
 }

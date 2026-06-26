@@ -42,6 +42,17 @@ Mesa::Mesa(){
     cube1->Name("my cube");
     viewport3d->AddChild(cube1);
 
+
+    Cube* cube2 = new Cube(1);
+    cube2->Name("cube 2");
+    cube2->SetPosition(double3(2,0,0));
+    viewport3d->AddChild(cube2);
+
+
+
+
+
+
     this->Name("Mesa");
 }
 

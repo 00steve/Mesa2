@@ -50,7 +50,8 @@ void Cube::DrawThis(){
     glPushMatrix();
 
         glm::mat4 trans = glm::mat4(1.0f);
-        trans = glm::translate(trans, glm::vec3(0.0f, 0.0f, 0.0f));
+        double3 pos = GetPosition();
+        trans = glm::translate(trans, glm::vec3(pos.x, pos.y, pos.z));
         //trans = glm::rotate(trans, (float)timer.LocalElapsedTime(), glm::vec3(0.0f, 1.0f, 0.0f));
         glMultMatrixf(&trans[0][0]);
 

@@ -19,6 +19,14 @@ double3 Physical::Gravity(double3 newGravity){
     return gravity = newGravity;
 }
 
+bool Physical::IsStatic(){
+    return isStatic;
+}
+
+bool Physical::IsStatic(bool newIsStatic){
+    return this->isStatic = newIsStatic;
+}
+
 Physical::Physical(){
 }
 
