@@ -38,6 +38,7 @@ void Window::UpdateThis(){
                 case SDL_WINDOWEVENT_RESIZED:
                 case SDL_WINDOWEVENT_SIZE_CHANGED:
                     SetWindowSize(int2(event.window.data1, event.window.data2));
+                    OnSetScreenSize();
                     std::cout <<"window resized: new aspect ratio : " << GetViewRatio() << "\n";
                     //SDL_GL_GetDrawableSize(window, &event.window.data1, &event.window.data2);
                     break;
@@ -47,7 +48,10 @@ void Window::UpdateThis(){
 
             case SDL_KEYDOWN:
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
-                    closeWindow = true;
+                    //closeWindow = true;
+                    captureMouse = !captureMouse;
+                    SDL_SetRelativeMouseMode(captureMouse ? SDL_TRUE : SDL_FALSE);
+                    std::cout << "change relative mouse mode : " << captureMouse << std::endl;
                 }
                 // Handle key presses
                 // You can check specific keys using e.key.keysym.sym (e.g., SDLK_RETURN)

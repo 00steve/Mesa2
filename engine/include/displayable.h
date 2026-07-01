@@ -55,6 +55,7 @@ protected:
     Displayable();
     ~Displayable();
 
+    virtual void OnSetScreenSize();
     
 public:
     /**

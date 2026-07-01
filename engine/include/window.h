@@ -14,8 +14,9 @@
 class Window : virtual public Node, virtual public Displayable {
 private:
 
-    SDL_Event event;
+    bool captureMouse = true;
     bool closeWindow = false;
+    SDL_Event event;
     SDL_GLContext glContext;
 	SDL_Surface* surface = NULL;
     std::vector<Viewport*> viewports;

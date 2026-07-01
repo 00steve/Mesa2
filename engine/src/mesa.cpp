@@ -7,6 +7,10 @@ bool Mesa::AddChildThis(Node* newChild){
         AddDependency(newChild);
         return true;
     }*/
+    if(dynamic_cast<Scene*>(newChild)){
+        scenes.push(dynamic_cast<Scene*>(newChild));
+
+    }
     return Displayable::AddChildThis(newChild);
 }
 

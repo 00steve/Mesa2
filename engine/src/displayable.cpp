@@ -138,6 +138,10 @@ SDL_Window* Displayable::GetCurrentSDLWindow(){
     return window;
 }
 
+int2 Displayable::GetScreenSize(){
+    return graphicsConfig.GetScreenSize();
+}
+
 float Displayable::GetViewRatio(){
     return graphicsConfig.GetViewRatio();
 }
@@ -254,16 +258,19 @@ bool Displayable::LoadShaders(std::string fragmentShaderFilePath, std::string ve
     return true;
 }
 
+void Displayable::OnSetScreenSize(){
+    for(std::vector<Displayable*>::iterator child = drawableChildren.begin(); child != drawableChildren.end(); ){
+        (*child)->OnSetScreenSize();
+        ++child;
+    }
+}
+
 void Displayable::SetCurrentProjectionMatrix(glm::mat4* newProjectionMatrix){
     currentProjectionMatrix = newProjectionMatrix;
 }
 
 void Displayable::SetCurrentViewMatrix(glm::mat4* newViewMatrix){
     currentViewMatrix = newViewMatrix;
-}
-
-int2 Displayable::GetScreenSize(){
-    return graphicsConfig.GetScreenSize();
 }
 
 void Displayable::SetSDLSurface(SDL_Surface* newSurface){

@@ -16,6 +16,7 @@ private:
 
 protected:
     void DrawThis() override;
+    void OnSetScreenSize() override;
     void SetCameraPosition(double3 newCameraPosition);
 
 public:

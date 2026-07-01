@@ -12,9 +12,9 @@ void Viewport::DrawThis(){
     //setuip current OpenGL settings and such
     glClearColor(0.0, 0, 0.3, 0.6f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //glEnable(GL_CULL_FACE);
     glFrontFace(GL_CCW); //set the vertex winding to clockwise
-    //glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);    
 
     int2 screenSize = Displayable::GetScreenSize();
@@ -33,6 +33,10 @@ void Viewport::DrawThis(){
     //camera view matrix already applied and all of that good shit.
     glMatrixMode(GL_MODELVIEW);
 
+}
+
+void Viewport::OnSetScreenSize(){
+    std::cout << "viewport resize stuff\n";
 }
 
 void Viewport::SetCamera(Camera* newCamera){

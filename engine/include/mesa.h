@@ -1,12 +1,14 @@
 #ifndef MESA_H
 #define MESA_H
 
+#include <stack>
 
 #include "graphicsConfig.h"
 #include "input.h"
 #include "node.h"
 #include "displayable.h"
 #include "window.h"
+#include "scene.h"
 //#include "scene/loadingScreen.h"
 #include "viewport/viewport3d.h"
 #include "obj/camera.h"
@@ -15,6 +17,7 @@
 
 class Mesa : virtual public Node, virtual public Displayable {
 private:
+    std::stack<Scene*> scenes;
     Window* window = NULL;
 
 protected:

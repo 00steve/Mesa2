@@ -106,6 +106,7 @@ void Camera::UpdateThis(){
 
         if(needsUpdate){
             SetPositionAndRotation(cameraPosition, cameraAngle);
+            std::cout << cameraPosition.x << "," << cameraPosition.y << "," << cameraPosition.z << std::endl;
         }
         break;
 
