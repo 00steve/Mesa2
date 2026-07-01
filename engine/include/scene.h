@@ -11,6 +11,7 @@ private:
 
 protected:
     Viewport* SetViewport(Viewport* newViewport);
+    virtual void SetWindowProperties();
 
 public:
     Viewport* GetViewport();

@@ -43,6 +43,8 @@
                 "window.cpp",
 
                 "scene/loadingScreen.cpp",
+                "scene/menu.cpp",
+                "scene/fps.cpp",
                 "viewport/viewport2d.cpp",
                 "viewport/viewport3d.cpp",
 

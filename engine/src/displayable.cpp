@@ -67,7 +67,7 @@ bool Displayable::AddChildThis(Node* newChild){
 }
 
 void Displayable::DrawThis(){
-    std::cout << "no draw implemented for node: " << Name() << std::endl;
+    //std::cout << "no draw implemented for node: " << Name() << std::endl;
 }
 
 void Displayable::CustomRemoveDependency(Node* oldDependency){

@@ -4,6 +4,10 @@ Viewport* Scene::GetViewport(){
     return viewport;
 }
 
+void Scene::SetWindowProperties(){
+    
+}
+
 Scene::Scene(){
 }
 

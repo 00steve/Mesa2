@@ -17,6 +17,7 @@
 
 class Mesa : virtual public Node, virtual public Displayable {
 private:
+    Scene* currentScene = NULL;
     std::stack<Scene*> scenes;
     Window* window = NULL;
 
@@ -29,7 +30,6 @@ public:
     Mesa();
     ~Mesa();
     bool Quit();
-
 
 };
 

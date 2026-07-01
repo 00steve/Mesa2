@@ -39,7 +39,7 @@ void Window::UpdateThis(){
                 case SDL_WINDOWEVENT_SIZE_CHANGED:
                     SetWindowSize(int2(event.window.data1, event.window.data2));
                     OnSetScreenSize();
-                    std::cout <<"window resized: new aspect ratio : " << GetViewRatio() << "\n";
+                    //std::cout <<"window resized: new aspect ratio : " << GetViewRatio() << "\n";
                     //SDL_GL_GetDrawableSize(window, &event.window.data1, &event.window.data2);
                     break;
                 // ... other window events
