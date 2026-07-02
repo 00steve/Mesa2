@@ -72,12 +72,9 @@ void Window::UpdateThis(){
 
 
 Window::Window(){
-
     //setup displayable global properties
     Displayable::SetSDLWindow(window);
     Displayable::SetSDLSurface(surface);
-
-
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -101,6 +98,8 @@ Window::Window(){
         exit(1);
     }
 
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
     // Get the surface from the window
     surface = SDL_GetWindowSurface( window );
 
@@ -117,7 +116,6 @@ Window::Window(){
         std::cout << "Error making OpenGL context current: " << SDL_GetError() << std::endl;
         exit(1);
     }
-
 
     glewExperimental = GL_TRUE;
     int nrAttributes;

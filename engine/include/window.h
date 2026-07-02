@@ -18,6 +18,7 @@ private:
     bool closeWindow = false;
     SDL_Event event;
     SDL_GLContext glContext;
+    SDL_Renderer* renderer;
 	SDL_Surface* surface = NULL;
     std::vector<Viewport*> viewports;
 	SDL_Window* window = NULL;
