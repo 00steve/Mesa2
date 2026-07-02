@@ -133,7 +133,7 @@ Window::Window(){
 
     Displayable::LoadShaders();
 
-    Name("Game Window");
+    Name("Window");
 }
 
 

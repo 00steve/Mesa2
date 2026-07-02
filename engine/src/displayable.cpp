@@ -259,6 +259,7 @@ bool Displayable::LoadShaders(std::string fragmentShaderFilePath, std::string ve
 }
 
 void Displayable::OnSetScreenSize(){
+    std::cout << " - on set screen size " + this->Name() + "\n";
     for(std::vector<Displayable*>::iterator child = drawableChildren.begin(); child != drawableChildren.end(); ){
         (*child)->OnSetScreenSize();
         ++child;

@@ -13,9 +13,3 @@ Scene::Scene(){
 
 Scene::~Scene(){
 }
-
-Viewport* Scene::SetViewport(Viewport* newViewport){
-    if(viewport) RemoveThisDependency(viewport);
-    AddDependency(newViewport);
-    return viewport = newViewport;
-}

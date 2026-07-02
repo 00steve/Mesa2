@@ -3,7 +3,6 @@
 
 
 FirstPersonShooter::FirstPersonShooter(){
-    
     Viewport* viewport3d = new Viewport3d();
     AddChild(viewport3d);
 
@@ -24,4 +23,10 @@ FirstPersonShooter::FirstPersonShooter(){
     cube2->Name("cube 2");
     cube2->SetPosition(double3(2,0,0));
     viewport3d->AddChild(cube2);
+
+    this->Name("FPS Engine");
+}
+
+
+void FirstPersonShooter::UpdateThis(){
 }

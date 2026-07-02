@@ -68,4 +68,5 @@ void Cube::Init(const double size){
     colors = BuildVertices(2);
     vertices = BuildVertices(size);
     BuildFaces();
+    this->Name("Cube " + std::to_string(this->Id()));
 }

@@ -9,7 +9,6 @@
 #include "displayable.h"
 #include "window.h"
 #include "scene.h"
-//#include "scene/loadingScreen.h"
 #include "viewport/viewport3d.h"
 #include "obj/camera.h"
 #include "obj/projectile.h"

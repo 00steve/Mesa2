@@ -27,11 +27,13 @@ Mesa::Mesa(){
         exit(1);
     } 
 
+    if( TTF_Init() < 0) {
+        std::cout << "Error initializing SDL ttf font: " << TTF_GetError() << std::endl;
+        exit(1);
+    }
+
     window = new Window();
     AddChild(window);
-
-
-
 
     this->Name("Mesa");
 }

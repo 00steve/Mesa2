@@ -8,8 +8,10 @@
 #include "../obj/projectile.h"
 #include "../obj/cube.h"
 
-class FirstPersonShooter : public Scene {
-
+class FirstPersonShooter : virtual public Scene {
+private:
+    void UpdateThis() override;
+    
 public:
     FirstPersonShooter();
 

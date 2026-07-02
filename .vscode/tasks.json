@@ -64,6 +64,7 @@
                 "-I",
                 "-lSDL2main",
                 "-lSDL2",
+                "-lSDL2_ttf",
                 "-L/usr/lib/x86_64-linux-gnu",
                 "-lglfw",
                 "-lGLEW",
